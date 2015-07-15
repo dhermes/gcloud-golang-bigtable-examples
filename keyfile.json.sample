@@ -1,0 +1,7 @@
+{
+  "private_key_id": "...SOME HEX VALUE...",
+  "private_key": "-----BEGIN PRIVATE KEY-----\n...SOME BASE 64 VALUE...\n-----END PRIVATE KEY-----\n",
+  "client_email": "FOO@developer.gserviceaccount.com",
+  "client_id": "FOO.apps.googleusercontent.com",
+  "type": "service_account"
+}

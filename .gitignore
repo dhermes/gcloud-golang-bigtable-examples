@@ -1,0 +1,7 @@
+consts.go
+
+# To make sure key files are not committed
+*json
+
+# Go path
+gopath/
