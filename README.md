@@ -17,8 +17,26 @@ To list tables in a cluster
 
 ```
 make run_table
+```
+
+This will need to be a cluster you have created (see
+"Creating a Cluster in the UI" below).
+
+Finally, to create a table in an existing cluster, run
+
+```
 make run_table_with_create
 ```
+
+This will create a table named `omg-finally`. If you'd like
+to use a different table name, you can edit
+
+```go
+tableName := "omg-finally"
+```
+
+in `main_with_table_admin_and_create.go`. However, the script
+is just for demonstration, so it shouldn't matter.
 
 ## Enabling the BigTable API
 
