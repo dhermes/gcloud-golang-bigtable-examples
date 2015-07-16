@@ -8,7 +8,6 @@ import (
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/cloud"
-	"google.golang.org/cloud/bigtable"
 )
 
 func getUseAppDefault() bool {
@@ -20,7 +19,7 @@ func getUseAppDefault() bool {
 	return useAppDefault
 }
 
-func getClientArgs() (*context.Context, *cloud.ClientOption, error) {
+func getClientArgs(jwtScope string) (*context.Context, *cloud.ClientOption, error) {
 	useAppDefault := getUseAppDefault()
 
 	var ctx context.Context
@@ -40,7 +39,7 @@ func getClientArgs() (*context.Context, *cloud.ClientOption, error) {
 			return nil, nil, err
 		}
 
-		config, err := google.JWTConfigFromJSON(jsonKey, bigtable.ClusterAdminScope)
+		config, err := google.JWTConfigFromJSON(jsonKey, jwtScope)
 		if err != nil {
 			return nil, nil, err
 		}

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	ctx, clientOption, err := getClientArgs()
+	ctx, clientOption, err := getClientArgs(bigtable.ClusterAdminScope)
 	if err != nil {
 		log.Fatal(err)
 		return

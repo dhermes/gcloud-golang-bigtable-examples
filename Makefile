@@ -13,6 +13,10 @@ help:
 	@echo '   make run_cluster            Run example for Cluster Admin API              '
 	@echo '   make run_table              Run example for Table Admin API                '
 	@echo '   make run_table_with_create  Example for Table Admin API with table creation'
+	@echo '                                                                              '
+	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to          '
+	@echo '      switch from a service account to a user account (via the application    '
+	@echo '      default credentials).                                                   '
 
 path:
 	mkdir -p $(GOPATH)
