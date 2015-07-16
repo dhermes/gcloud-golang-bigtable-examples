@@ -47,7 +47,8 @@ make run_table_with_create
     ```
 
 1.  On this page, click "Create new Client ID", select "Service account" as
-    your "Application type" and then download the JSON key provided.
+    your "Application type" and then download the JSON key provided. The
+    downloaded file should resemble `keyfile.json.sample`.
 
 After downloading, move this key to the local directory holding this code.
 
