@@ -1,13 +1,13 @@
-# Example Calls with `gcloud-golang
+# Example Calls with `gcloud-golang`
 
-Make sure you have [downloaded][2] `go` (GOLANG) and
+Make sure you have [downloaded][2] `go` (aka Golang) and
 that it is on your `${PATH}`. After doing this, the
 `Makefile` will handle installing isolated dependencies
 to run this sample.
 
 To list clusters run
 
-```
+```bash
 make run_cluster
 ```
 
@@ -15,7 +15,7 @@ This consistently fails (at least with a service account),
 
 To list tables in a cluster
 
-```
+```bash
 make run_table
 ```
 
@@ -24,7 +24,7 @@ This will need to be a cluster you have created (see
 
 Finally, to create a table in an existing cluster, run
 
-```
+```bash
 make run_table_with_create
 ```
 
@@ -43,7 +43,7 @@ is just for demonstration, so it shouldn't matter.
 1.  Visit [Google Cloud Console][1]
 1.  Either create a new project or visit an existing one
 1.  In the project, click **"APIs & auth > APIs"**. The URI
-    should resemble
+    should be of the form
 
     ```
     https://console.developers.google.com/project/{project-id}/apiui/apis/library
@@ -58,7 +58,7 @@ is just for demonstration, so it shouldn't matter.
 1.  Visit [Google Cloud Console][1]
 1.  Either create a new project or visit an existing one
 1.  In the project, click **"APIs & auth > Credentials"**. The URI
-    should resemble
+    should be of the form
 
     ```
     https://console.developers.google.com/project/{project-id}/apiui/credential
@@ -75,7 +75,7 @@ After downloading, move this key to the local directory holding this code.
 1.  Visit [Google Cloud Console][1]
 1.  Either create a new project or visit an existing one
 1.  In the project, click **"Storage > Cloud Bigtable"**. The URI
-    should resemble
+    should be of the form
 
     ```
     https://console.developers.google.com/project/{project-id}/bigtable/clusters
