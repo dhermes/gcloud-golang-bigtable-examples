@@ -11,7 +11,19 @@ To list clusters run
 make run_cluster
 ```
 
-This consistently fails (at least with a service account),
+This consistently fails (at least with a service account). If
+you'd like to run it with a user account instead of a service
+account, you first will need to mint an account with
+
+```bash
+gcloud login
+```
+
+using the [`gcloud` CLI tool][3].
+
+```bash
+make run_cluster USE_APP_DEFAULT=True
+```
 
 To list tables in a cluster
 
@@ -108,3 +120,4 @@ pulls this from `consts.go`.
 
 [1]: https://console.developers.google.com/
 [2]: http://golang.org/doc/install
+[3]: https://cloud.google.com/sdk/gcloud/
