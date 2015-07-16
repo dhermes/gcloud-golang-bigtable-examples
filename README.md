@@ -8,7 +8,7 @@ to run this sample.
 To list clusters run
 
 ```bash
-make run_cluster
+make list_clusters
 ```
 
 This consistently fails (at least with a service account). If
@@ -23,13 +23,13 @@ using the [`gcloud` CLI tool][3]. After doing this, you can
 use that token by adding a flag to the `make` command:
 
 ```bash
-make run_cluster USE_APP_DEFAULT=True
+make list_clusters USE_APP_DEFAULT=True
 ```
 
 To list tables in a cluster
 
 ```bash
-make run_table
+make list_tables
 ```
 
 This will need to be a cluster you have created (see
@@ -38,7 +38,7 @@ This will need to be a cluster you have created (see
 Finally, to create a table in an existing cluster, run
 
 ```bash
-make run_table_with_create
+make list_tables_with_create
 ```
 
 This will create a table named `omg-finally`. If you'd like
