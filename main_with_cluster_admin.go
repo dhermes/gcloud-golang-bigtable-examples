@@ -15,12 +15,6 @@ import (
 func main() {
 	useAppDefault := getUseAppDefault()
 
-	jsonKey, err := ioutil.ReadFile(KeyFile)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-
 	var ctx context.Context
 	var clientOption cloud.ClientOption
 	if useAppDefault {
@@ -34,6 +28,12 @@ func main() {
 		ctx = oauth2.NoContext
 		clientOption = cloud.WithTokenSource(tokenSrc)
 	} else {
+		jsonKey, err := ioutil.ReadFile(KeyFile)
+		if err != nil {
+			log.Fatal(err)
+			return
+		}
+
 		config, err := google.JWTConfigFromJSON(jsonKey, bigtable.ClusterAdminScope)
 		if err != nil {
 			log.Fatal(err)
