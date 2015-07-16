@@ -19,33 +19,38 @@ func getUseAppDefault() bool {
 	return useAppDefault
 }
 
+func getAppDefaultClientArgs() (*context.Context, *cloud.ClientOption, error) {
+	ctx := oauth2.NoContext
+	tokenSrc, err := google.DefaultTokenSource(ctx, ScopeCloudPlatform)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	clientOption := cloud.WithTokenSource(tokenSrc)
+	return &ctx, &clientOption, nil
+}
+
+func getServiceAccountClientArgs(jwtScope string) (*context.Context, *cloud.ClientOption, error) {
+	jsonKey, err := ioutil.ReadFile(KeyFile)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	config, err := google.JWTConfigFromJSON(jsonKey, jwtScope)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	ctx := cloud.NewContext(ProjectID, config.Client(oauth2.NoContext))
+	clientOption := cloud.WithTokenSource(config.TokenSource(ctx))
+	return &ctx, &clientOption, nil
+}
+
 func getClientArgs(jwtScope string) (*context.Context, *cloud.ClientOption, error) {
 	useAppDefault := getUseAppDefault()
-
-	var ctx context.Context
-	var clientOption cloud.ClientOption
 	if useAppDefault {
-		tokenSrc, err := google.DefaultTokenSource(
-			oauth2.NoContext, ScopeCloudPlatform)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		ctx = oauth2.NoContext
-		clientOption = cloud.WithTokenSource(tokenSrc)
+		return getAppDefaultClientArgs()
 	} else {
-		jsonKey, err := ioutil.ReadFile(KeyFile)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		config, err := google.JWTConfigFromJSON(jsonKey, jwtScope)
-		if err != nil {
-			return nil, nil, err
-		}
-
-		ctx = cloud.NewContext(ProjectID, config.Client(oauth2.NoContext))
-		clientOption = cloud.WithTokenSource(config.TokenSource(ctx))
+		return getServiceAccountClientArgs(jwtScope)
 	}
-	return &ctx, &clientOption, nil
 }
