@@ -19,7 +19,8 @@ account, you first will need to mint an account with
 gcloud login
 ```
 
-using the [`gcloud` CLI tool][3].
+using the [`gcloud` CLI tool][3]. After doing this, you can
+use that token by adding a flag to the `make` command:
 
 ```bash
 make run_cluster USE_APP_DEFAULT=True
