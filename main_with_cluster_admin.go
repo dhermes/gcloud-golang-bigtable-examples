@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -14,11 +13,7 @@ import (
 )
 
 func main() {
-	var useAppDefault bool
-	flag.BoolVar(
-		&useAppDefault, "use-app-default", false,
-		"Boolean to determine if app. default credentials should be used")
-	flag.Parse()
+	useAppDefault := getUseAppDefault()
 
 	jsonKey, err := ioutil.ReadFile(KeyFile)
 	if err != nil {
