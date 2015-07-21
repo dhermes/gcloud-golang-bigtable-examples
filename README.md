@@ -119,6 +119,11 @@ pulls this from `consts.go`.
     1.  Change `KeyFile` to the path of the service account key
         file that you downloaded above.
 
+## Note
+
+This was previously a [gist][4] and has been updated here.
+
 [1]: https://console.developers.google.com/
 [2]: http://golang.org/doc/install
 [3]: https://cloud.google.com/sdk/gcloud/
+[4]: https://gist.github.com/dhermes/d27070c90a9862213a3b
