@@ -14,8 +14,12 @@ func main() {
 		return
 	}
 
-	client, err := bigtable.NewClusterAdminClient(
+	client, err := NewAltClusterAdminClient(
 		*ctx, ProjectID, *clientOption)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
 	// Get the list of clusters.
 	clusterInfo, err := client.Clusters(*ctx)

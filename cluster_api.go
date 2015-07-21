@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"regexp"
 
 	"golang.org/x/net/context"
 	"google.golang.org/cloud"
@@ -12,6 +13,8 @@ import (
 )
 
 const clusterAdminAddr = "bigtableclusteradmin.googleapis.com:443"
+
+var clusterNameRegexp = regexp.MustCompile(`^projects/([^/]+)/zones/([^/]+)/clusters/([a-z][-a-z0-9]*)$`)
 
 type AltClusterAdminClient struct {
 	conn    *grpc.ClientConn
@@ -31,6 +34,7 @@ func (cac *AltClusterAdminClient) ListZones(ctx context.Context) ([]*btcdpb.Zone
 	}
 }
 
+// BEGIN: Copied and pasted from gcloud-golang/bigtable/admin.go
 func NewAltClusterAdminClient(ctx context.Context, project string, opts ...cloud.ClientOption) (*AltClusterAdminClient, error) {
 	o := []cloud.ClientOption{
 		cloud.WithEndpoint(clusterAdminAddr),
@@ -48,3 +52,35 @@ func NewAltClusterAdminClient(ctx context.Context, project string, opts ...cloud
 		project: project,
 	}, nil
 }
+
+func (cac *AltClusterAdminClient) Close() {
+	cac.conn.Close()
+}
+
+// Clusters returns a list of clusters in the project.
+func (cac *AltClusterAdminClient) Clusters(ctx context.Context) ([]*bigtable.ClusterInfo, error) {
+	req := &btcspb.ListClustersRequest{
+		Name: "projects/" + cac.project,
+	}
+	res, err := cac.cClient.ListClusters(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	// TODO(dsymonds): Deal with failed_zones.
+	var cis []*bigtable.ClusterInfo
+	for _, c := range res.Clusters {
+		m := clusterNameRegexp.FindStringSubmatch(c.Name)
+		if m == nil {
+			return nil, fmt.Errorf("malformed cluster name %q", c.Name)
+		}
+		cis = append(cis, &bigtable.ClusterInfo{
+			Name:        m[3],
+			Zone:        m[2],
+			DisplayName: c.DisplayName,
+			ServeNodes:  int(c.ServeNodes),
+		})
+	}
+	return cis, nil
+}
+
+//   END: Copied and pasted from gcloud-golang/bigtable/admin.go

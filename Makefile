@@ -26,7 +26,7 @@ install: path
 	GOPATH=$(GOPATH) go get google.golang.org/cloud/bigtable
 
 list_clusters: install
-	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)
 
 list_zones: install
 	GOPATH=$(GOPATH) go run main_list_zones.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)

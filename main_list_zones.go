@@ -14,14 +14,14 @@ func main() {
 		return
 	}
 
-	altClient, err := NewAltClusterAdminClient(
+	client, err := NewAltClusterAdminClient(
 		*ctx, ProjectID, *clientOption)
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	zones, err := altClient.ListZones(*ctx)
+	zones, err := client.ListZones(*ctx)
 	for i := 0; i < len(zones); i++ {
 		fmt.Printf("Zone %d\n", i)
 		fmt.Println("===========================================================")
