@@ -11,6 +11,7 @@ help:
 	@echo '   make path                     Create the GOPATH dir                          '
 	@echo '   make install                  Install the GO dependencies                    '
 	@echo '   make list_clusters            Run example for Cluster Admin API              '
+	@echo '   make list_zones               Cluster Admin API: List zones                  '
 	@echo '   make list_tables              Run example for Table Admin API                '
 	@echo '   make list_tables_with_create  Example for Table Admin API with table creation'
 	@echo '                                                                                '
@@ -26,6 +27,9 @@ install: path
 
 list_clusters: install
 	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go $(RUN_FLAGS)
+
+list_zones: install
+	GOPATH=$(GOPATH) go run main_list_zones.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)
 
 list_tables: install
 	GOPATH=$(GOPATH) go run main_with_table_admin.go consts.go helpers.go $(RUN_FLAGS)
