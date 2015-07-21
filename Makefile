@@ -1,7 +1,9 @@
-ifeq ($(USE_APP_DEFAULT),)
-	RUN_FLAGS=""
-else
-	RUN_FLAGS="-use-app-default"
+RUN_FLAGS=
+ifneq ($(USE_APP_DEFAULT),)
+	RUN_FLAGS+= -use-app-default
+endif
+ifneq ($(VERBOSE),)
+	RUN_FLAGS+= -verbose
 endif
 GOPATH=$(shell pwd)/gopath
 
@@ -18,6 +20,9 @@ help:
 	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to            '
 	@echo '      switch from a service account to a user account (via the application      '
 	@echo '      default credentials).                                                     '
+	@echo '                                                                                '
+	@echo 'NOTE: Append VERBOSE=True to the end of your make command to log more           '
+	@echo '      output from your examples.                                                '
 
 path:
 	mkdir -p $(GOPATH)

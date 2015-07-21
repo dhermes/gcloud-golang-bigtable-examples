@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io/ioutil"
 
 	"golang.org/x/net/context"
@@ -10,13 +11,17 @@ import (
 	"google.golang.org/cloud"
 )
 
-func getUseAppDefault() bool {
+func getFlags() (bool, bool) {
 	var useAppDefault bool
+	var verbose bool
 	flag.BoolVar(
 		&useAppDefault, "use-app-default", false,
 		"Boolean to determine if app. default credentials should be used")
+	flag.BoolVar(
+		&verbose, "verbose", false,
+		"Boolean to determine if verbosity level should be increased")
 	flag.Parse()
-	return useAppDefault
+	return useAppDefault, verbose
 }
 
 func getAppDefaultClientArgs() (*context.Context, *cloud.ClientOption, error) {
@@ -47,10 +52,16 @@ func getServiceAccountClientArgs(jwtScope string) (*context.Context, *cloud.Clie
 }
 
 func getClientArgs(jwtScope string) (*context.Context, *cloud.ClientOption, error) {
-	useAppDefault := getUseAppDefault()
+	useAppDefault, verbose := getFlags()
 	if useAppDefault {
+		if verbose {
+			fmt.Println("Using App. Default Credentials.")
+		}
 		return getAppDefaultClientArgs()
 	} else {
+		if verbose {
+			fmt.Println("Using Service Account.")
+		}
 		return getServiceAccountClientArgs(jwtScope)
 	}
 }
