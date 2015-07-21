@@ -23,5 +23,8 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	fmt.Printf("Result of List Clusters: %v\n", clusterInfo)
+	fmt.Println("Result of List Clusters:")
+	for i := 0; i < len(clusterInfo); i++ {
+		fmt.Printf("    %v\n", clusterInfo[i].Name)
+	}
 }
