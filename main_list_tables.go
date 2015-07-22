@@ -15,7 +15,7 @@ func main() {
 	}
 
 	client, err := bigtable.NewAdminClient(
-		*ctx, ProjectID, Zone, Cluster, *clientOption)
+		*ctx, ProjectID, Zone, ClusterID, *clientOption)
 
 	// Get the list of tables.
 	tableInfo, err := client.Tables(*ctx)

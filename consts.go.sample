@@ -3,7 +3,9 @@ package main
 const (
 	ProjectID          = "some-project-id"
 	Zone               = "us-central1-b"
-	Cluster            = "some-cluster-name"
+	ClusterID          = "some-cluster-name"
+	DisplayName        = "Display name for cluster"
+	ServeNodes         = 3
 	KeyFile            = "keyfile.json"
 	ScopeCloudPlatform = "https://www.googleapis.com/auth/cloud-platform"
 )

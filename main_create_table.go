@@ -15,7 +15,7 @@ func main() {
 	}
 
 	client, err := bigtable.NewAdminClient(
-		*ctx, ProjectID, Zone, Cluster, *clientOption)
+		*ctx, ProjectID, Zone, ClusterID, *clientOption)
 
 	// Insert a new table.
 	tableName := "omg-finally"

@@ -113,7 +113,7 @@ pulls this from `consts.go`.
     1.  The `ProjectID` in `consts.go` to match the project ID
         in the project you used above. (Make sure you use the
         Project ID, not the Project Number)
-    1.  You may name `Cluster` and `Zone` anything you like, but these
+    1.  You may name `ClusterID` and `Zone` anything you like, but these
         should come from a cluster that already exists (see above for
         how to create a cluster).
     1.  Change `KeyFile` to the path of the service account key
