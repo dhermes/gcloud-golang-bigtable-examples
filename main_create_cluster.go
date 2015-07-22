@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -23,7 +24,12 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	fmt.Printf("Cluster created: %v\n", cluster.Name)
+	clusterPretty, err := json.MarshalIndent(cluster, "", "  ")
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Printf("Cluster created:\n%s\n\n", clusterPretty)
 
 	// Get the list of clusters.
 	clusterInfo, err := client.Clusters(*ctx)
