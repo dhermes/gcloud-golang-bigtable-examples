@@ -12,6 +12,7 @@ help:
 	@echo '                                                                                '
 	@echo '   make path                     Create the GOPATH dir                          '
 	@echo '   make install                  Install the GO dependencies                    '
+	@echo '   make update_install           Update the installed GO dependencies           '
 	@echo '   make list_clusters            Run example for Cluster Admin API              '
 	@echo '   make list_zones               Cluster Admin API: List zones                  '
 	@echo '   make list_tables              Run example for Table Admin API                '
@@ -30,11 +31,14 @@ path:
 install: path
 	GOPATH=$(GOPATH) go get github.com/dhermes/gcloud-golang/bigtable
 
+update_install: path
+	GOPATH=$(GOPATH) go get -u github.com/dhermes/gcloud-golang/bigtable
+
 list_clusters: install
-	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go $(RUN_FLAGS)
 
 list_zones: install
-	GOPATH=$(GOPATH) go run main_list_zones.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_list_zones.go consts.go helpers.go $(RUN_FLAGS)
 
 list_tables: install
 	GOPATH=$(GOPATH) go run main_with_table_admin.go consts.go helpers.go $(RUN_FLAGS)

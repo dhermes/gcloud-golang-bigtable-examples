@@ -14,7 +14,7 @@ func main() {
 		return
 	}
 
-	client, err := NewAltClusterAdminClient(
+	client, err := bigtable.NewClusterAdminClient(
 		*ctx, ProjectID, *clientOption)
 	if err != nil {
 		log.Fatal(err)
