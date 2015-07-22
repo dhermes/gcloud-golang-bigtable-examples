@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"regexp"
 
+	"github.com/dhermes/gcloud-golang/bigtable"
+	btcdpb "github.com/dhermes/gcloud-golang/bigtable/internal/cluster_data_proto"
+	btcspb "github.com/dhermes/gcloud-golang/bigtable/internal/cluster_service_proto"
 	"golang.org/x/net/context"
 	"google.golang.org/cloud"
-	"google.golang.org/cloud/bigtable"
-	btcdpb "google.golang.org/cloud/bigtable/internal/cluster_data_proto"
-	btcspb "google.golang.org/cloud/bigtable/internal/cluster_service_proto"
 	"google.golang.org/grpc"
 )
 

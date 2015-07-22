@@ -28,7 +28,7 @@ path:
 	mkdir -p $(GOPATH)
 
 install: path
-	GOPATH=$(GOPATH) go get google.golang.org/cloud/bigtable
+	GOPATH=$(GOPATH) go get github.com/dhermes/gcloud-golang/bigtable
 
 list_clusters: install
 	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go cluster_api.go $(RUN_FLAGS)

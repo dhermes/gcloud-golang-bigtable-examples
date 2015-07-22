@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"google.golang.org/cloud/bigtable"
+	"github.com/dhermes/gcloud-golang/bigtable"
 )
 
 func main() {
