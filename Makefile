@@ -35,15 +35,15 @@ update_install: path
 	GOPATH=$(GOPATH) go get -u github.com/dhermes/gcloud-golang/bigtable
 
 list_clusters: install
-	GOPATH=$(GOPATH) go run main_with_cluster_admin.go consts.go helpers.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_list_clusters.go consts.go helpers.go $(RUN_FLAGS)
 
 list_zones: install
 	GOPATH=$(GOPATH) go run main_list_zones.go consts.go helpers.go $(RUN_FLAGS)
 
 list_tables: install
-	GOPATH=$(GOPATH) go run main_with_table_admin.go consts.go helpers.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_list_tables.go consts.go helpers.go $(RUN_FLAGS)
 
 list_tables_with_create: install
-	GOPATH=$(GOPATH) go run main_with_table_admin_and_create.go consts.go helpers.go $(RUN_FLAGS)
+	GOPATH=$(GOPATH) go run main_list_tables_with_create.go consts.go helpers.go $(RUN_FLAGS)
 
 .PHONY: path install list_clusters list_tables list_tables_with_create
