@@ -8,22 +8,22 @@ endif
 GOPATH=$(shell pwd)/gopath
 
 help:
-	@echo 'Makefile for GOLANG BigTable sample                                             '
-	@echo '                                                                                '
-	@echo '   make path                     Create the GOPATH dir                          '
-	@echo '   make install                  Install the GO dependencies                    '
-	@echo '   make update_install           Update the installed GO dependencies           '
-	@echo '   make list_clusters            Run example for Cluster Admin API              '
-	@echo '   make list_zones               Cluster Admin API: List zones                  '
-	@echo '   make list_tables              Run example for Table Admin API                '
-	@echo '   make list_tables_with_create  Example for Table Admin API with table creation'
-	@echo '                                                                                '
-	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to            '
-	@echo '      switch from a service account to a user account (via the application      '
-	@echo '      default credentials).                                                     '
-	@echo '                                                                                '
-	@echo 'NOTE: Append VERBOSE=True to the end of your make command to log more           '
-	@echo '      output from your examples.                                                '
+	@echo 'Makefile for GOLANG BigTable sample                                       '
+	@echo '                                                                          '
+	@echo '   make path            Create the GOPATH dir                             '
+	@echo '   make install         Install the GO dependencies                       '
+	@echo '   make update_install  Update the installed GO dependencies              '
+	@echo '   make list_clusters   Run example for Cluster Admin API                 '
+	@echo '   make list_zones      Cluster Admin API: List zones                     '
+	@echo '   make list_tables     Run example for Table Admin API                   '
+	@echo '   make create_table    Example for Table Admin API with table creation   '
+	@echo '                                                                          '
+	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to      '
+	@echo '      switch from a service account to a user account (via the application'
+	@echo '      default credentials).                                               '
+	@echo '                                                                          '
+	@echo 'NOTE: Append VERBOSE=True to the end of your make command to log more     '
+	@echo '      output from your examples.                                          '
 
 path:
 	mkdir -p $(GOPATH)
@@ -43,7 +43,7 @@ list_zones: install
 list_tables: install
 	GOPATH=$(GOPATH) go run main_list_tables.go consts.go helpers.go $(RUN_FLAGS)
 
-list_tables_with_create: install
-	GOPATH=$(GOPATH) go run main_list_tables_with_create.go consts.go helpers.go $(RUN_FLAGS)
+create_table: install
+	GOPATH=$(GOPATH) go run main_create_table.go consts.go helpers.go $(RUN_FLAGS)
 
-.PHONY: path install list_clusters list_tables list_tables_with_create
+.PHONY: path install update_install list_clusters list_zones list_tables create_table
