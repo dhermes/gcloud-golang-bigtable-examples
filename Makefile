@@ -15,6 +15,7 @@ help:
 	@echo '   make update_install  Update the installed GO dependencies              '
 	@echo '   make list_clusters   Run example for Cluster Admin API                 '
 	@echo '   make create_cluster  Cluster Admin API: Create new cluster             '
+	@echo '   make update_cluster  Cluster Admin API: Update a cluster               '
 	@echo '   make delete_cluster  Cluster Admin API: Delete a cluster               '
 	@echo '   make list_zones      Cluster Admin API: List zones                     '
 	@echo '   make list_tables     Run example for Table Admin API                   '
@@ -42,6 +43,9 @@ list_clusters: install
 create_cluster: install
 	GOPATH=$(GOPATH) go run main_create_cluster.go consts.go helpers.go $(RUN_FLAGS)
 
+update_cluster: install
+	GOPATH=$(GOPATH) go run main_update_cluster.go consts.go helpers.go $(RUN_FLAGS)
+
 delete_cluster: install
 	GOPATH=$(GOPATH) go run main_delete_cluster.go consts.go helpers.go $(RUN_FLAGS)
 
@@ -54,4 +58,4 @@ list_tables: install
 create_table: install
 	GOPATH=$(GOPATH) go run main_create_table.go consts.go helpers.go $(RUN_FLAGS)
 
-.PHONY: path install update_install list_clusters create_clutser list_zones list_tables create_table
+.PHONY: path install update_install list_clusters create_clutser update_cluster delete_cluster list_zones list_tables create_table
