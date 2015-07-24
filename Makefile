@@ -8,25 +8,26 @@ endif
 GOPATH=$(shell pwd)/gopath
 
 help:
-	@echo 'Makefile for GOLANG BigTable sample                                       '
-	@echo '                                                                          '
-	@echo '   make path            Create the GOPATH dir                             '
-	@echo '   make install         Install the GO dependencies                       '
-	@echo '   make update_install  Update the installed GO dependencies              '
-	@echo '   make list_clusters   Run example for Cluster Admin API                 '
-	@echo '   make create_cluster  Cluster Admin API: Create new cluster             '
-	@echo '   make update_cluster  Cluster Admin API: Update a cluster               '
-	@echo '   make delete_cluster  Cluster Admin API: Delete a cluster               '
-	@echo '   make list_zones      Cluster Admin API: List zones                     '
-	@echo '   make list_tables     Run example for Table Admin API                   '
-	@echo '   make create_table    Example for Table Admin API with table creation   '
-	@echo '                                                                          '
-	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to      '
-	@echo '      switch from a service account to a user account (via the application'
-	@echo '      default credentials).                                               '
-	@echo '                                                                          '
-	@echo 'NOTE: Append VERBOSE=True to the end of your make command to log more     '
-	@echo '      output from your examples.                                          '
+	@echo 'Makefile for GOLANG BigTable sample                                         '
+	@echo '                                                                            '
+	@echo '   make path                 Create the GOPATH dir                          '
+	@echo '   make install              Install the GO dependencies                    '
+	@echo '   make update_install       Update the installed GO dependencies           '
+	@echo '   make list_clusters        Run example for Cluster Admin API              '
+	@echo '   make create_cluster       Cluster Admin API: Create new cluster          '
+	@echo '   make create_cluster_plus  Create new cluster, get operation and metadata '
+	@echo '   make update_cluster       Cluster Admin API: Update a cluster            '
+	@echo '   make delete_cluster       Cluster Admin API: Delete a cluster            '
+	@echo '   make list_zones           Cluster Admin API: List zones                  '
+	@echo '   make list_tables          Run example for Table Admin API                '
+	@echo '   make create_table         Example for Table Admin API with table creation'
+	@echo '                                                                            '
+	@echo 'NOTE: Append USE_APP_DEFAULT=True to the end of your make command to        '
+	@echo '      switch from a service account to a user account (via the application  '
+	@echo '      default credentials).                                                 '
+	@echo '                                                                            '
+	@echo 'NOTE: Append VERBOSE=True to the end of your make command to log more       '
+	@echo '      output from your examples.                                            '
 
 path:
 	mkdir -p $(GOPATH)
@@ -43,6 +44,9 @@ list_clusters: install
 create_cluster: install
 	GOPATH=$(GOPATH) go run main_create_cluster.go consts.go helpers.go $(RUN_FLAGS)
 
+create_cluster_plus: install
+	GOPATH=$(GOPATH) go run main_create_cluster_extended.go consts.go helpers.go $(RUN_FLAGS)
+
 update_cluster: install
 	GOPATH=$(GOPATH) go run main_update_cluster.go consts.go helpers.go $(RUN_FLAGS)
 
@@ -58,4 +62,4 @@ list_tables: install
 create_table: install
 	GOPATH=$(GOPATH) go run main_create_table.go consts.go helpers.go $(RUN_FLAGS)
 
-.PHONY: path install update_install list_clusters create_clutser update_cluster delete_cluster list_zones list_tables create_table
+.PHONY: path install update_install list_clusters create_cluster create_cluster_plus update_cluster delete_cluster list_zones list_tables create_table
