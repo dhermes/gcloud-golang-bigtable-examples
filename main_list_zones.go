@@ -22,6 +22,10 @@ func main() {
 	}
 
 	zones, err := client.ListZones(*ctx)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	for i := 0; i < len(zones); i++ {
 		fmt.Printf("Zone %d\n", i)
 		fmt.Println("===========================================================")
